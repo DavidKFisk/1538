@@ -260,6 +260,7 @@ namespace _15ways38
                    16  17   18       ||        16 19  3             18  17  3          10 13  15           10  12  16
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+
             _mainWindow.LR1_label.Content = (_TileBaseUsedValues[7] + _TileBaseUsedValues[12] + _TileBaseUsedValues[16]).ToString();
             _mainWindow.LR2_label.Content = (_TileBaseUsedValues[3] + _TileBaseUsedValues[8] + _TileBaseUsedValues[13] + _TileBaseUsedValues[17]).ToString();
             _mainWindow.LR3_label.Content = (_TileBaseUsedValues[0] + _TileBaseUsedValues[4] + _TileBaseUsedValues[9] + _TileBaseUsedValues[14] + _TileBaseUsedValues[18]).ToString();
@@ -279,24 +280,27 @@ namespace _15ways38
             _mainWindow.H5_label.Content = (_TileBaseUsedValues[16] + _TileBaseUsedValues[17] + _TileBaseUsedValues[18]).ToString();
 
 
-            if(_mainWindow.LR1_label.Content.ToString() ==  "38"){_mainWindow.LR1_label.Foreground = Brushes.Green; } else { _mainWindow.LR1_label.Foreground = Brushes.Red; }
-            if(_mainWindow.LR2_label.Content.ToString() ==  "38"){_mainWindow.LR2_label.Foreground = Brushes.Green; } else { _mainWindow.LR2_label.Foreground = Brushes.Red; }
-            if(_mainWindow.LR3_label.Content.ToString() ==  "38"){_mainWindow.LR3_label.Foreground = Brushes.Green; } else { _mainWindow.LR3_label.Foreground = Brushes.Red; }
-            if(_mainWindow.LR4_label.Content.ToString() ==  "38"){_mainWindow.LR4_label.Foreground = Brushes.Green; } else { _mainWindow.LR4_label.Foreground = Brushes.Red; }
-            if(_mainWindow.LR5_label.Content.ToString() ==  "38"){_mainWindow.LR5_label.Foreground = Brushes.Green; } else { _mainWindow.LR5_label.Foreground = Brushes.Red; }
-                                                               
-            if(_mainWindow.RL1_label.Content.ToString() ==  "38"){_mainWindow.RL1_label.Foreground = Brushes.Green; } else { _mainWindow.RL1_label.Foreground = Brushes.Red; }
-            if(_mainWindow.RL2_label.Content.ToString() ==  "38"){_mainWindow.RL2_label.Foreground = Brushes.Green; } else { _mainWindow.RL2_label.Foreground = Brushes.Red; }
-            if(_mainWindow.RL3_label.Content.ToString() ==  "38"){_mainWindow.RL3_label.Foreground = Brushes.Green; } else { _mainWindow.RL3_label.Foreground = Brushes.Red; }
-            if(_mainWindow.RL4_label.Content.ToString() ==  "38"){_mainWindow.RL4_label.Foreground = Brushes.Green; } else { _mainWindow.RL4_label.Foreground = Brushes.Red; }
-            if(_mainWindow.RL5_label.Content.ToString() ==  "38"){_mainWindow.RL5_label.Foreground = Brushes.Green; } else { _mainWindow.RL5_label.Foreground = Brushes.Red; }
-                                                                            
-            if(_mainWindow.H1_label.Content.ToString() ==   "38"){_mainWindow.H1_label.Foreground = Brushes.Green; } else { _mainWindow.H1_label.Foreground = Brushes.Red; }
-            if(_mainWindow.H2_label.Content.ToString() ==   "38"){_mainWindow.H2_label.Foreground = Brushes.Green; } else { _mainWindow.H2_label.Foreground = Brushes.Red; }
-            if(_mainWindow.H3_label.Content.ToString() ==   "38"){_mainWindow.H3_label.Foreground = Brushes.Green; } else { _mainWindow.H3_label.Foreground = Brushes.Red; }
-            if(_mainWindow.H4_label.Content.ToString() ==   "38"){_mainWindow.H4_label.Foreground = Brushes.Green; } else { _mainWindow.H4_label.Foreground = Brushes.Red; }
-            if(_mainWindow.H5_label.Content.ToString() ==   "38"){_mainWindow.H5_label.Foreground = Brushes.Green; } else { _mainWindow.H5_label.Foreground = Brushes.Red; }
-                                                 
+            if (_mainWindow.LR1_label.Content.ToString() == "38") { _mainWindow.LR1_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR1_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR2_label.Content.ToString() == "38") { _mainWindow.LR2_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR2_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR3_label.Content.ToString() == "38") { _mainWindow.LR3_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR3_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR4_label.Content.ToString() == "38") { _mainWindow.LR4_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR4_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR5_label.Content.ToString() == "38") { _mainWindow.LR5_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR5_label.Foreground = Brushes.PaleVioletRed; }
+
+            if (_mainWindow.RL1_label.Content.ToString() == "38") { _mainWindow.RL1_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL1_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL2_label.Content.ToString() == "38") { _mainWindow.RL2_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL2_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL3_label.Content.ToString() == "38") { _mainWindow.RL3_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL3_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL4_label.Content.ToString() == "38") { _mainWindow.RL4_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL4_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL5_label.Content.ToString() == "38") { _mainWindow.RL5_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL5_label.Foreground = Brushes.PaleVioletRed; }
+
+            if (_mainWindow.H1_label.Content.ToString() == "38") { _mainWindow.H1_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H1_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.H2_label.Content.ToString() == "38") { _mainWindow.H2_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H2_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.H3_label.Content.ToString() == "38") { _mainWindow.H3_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H3_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.H4_label.Content.ToString() == "38") { _mainWindow.H4_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H4_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.H5_label.Content.ToString() == "38") { _mainWindow.H5_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H5_label.Foreground = Brushes.PaleVioletRed; }
+
+
+
+
         }
 
         private void TileMouseDown(Object param)

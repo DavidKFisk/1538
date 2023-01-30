@@ -48,28 +48,29 @@
 
         <Button x:Name="SolveButton" Content="Solve Game" HorizontalAlignment="Left" Margin="550,375,0,0" VerticalAlignment="Top"  Height="50" Width="100" Command="{Binding SolveGame}" />
         <Button x:Name="ResetButton" Content="Reset Game" HorizontalAlignment="Left" Margin="670,375,0,0" VerticalAlignment="Top"  Height="50" Width="100" Command="{Binding ResetGame}" />
-        
-        <Label Content="Diagnoal Left Going Down Right" HorizontalAlignment="Left" Margin="550,64,0,0" VerticalAlignment="Top"/>
-        <Label Content="Diagnoal Right Going Down Left" HorizontalAlignment="Left" Margin="550,129,0,0" VerticalAlignment="Top"/>
-        <Label Content="Horizontal" HorizontalAlignment="Left" Margin="550,196,0,0" VerticalAlignment="Top"/>
-        
-        <Label x:Name="LR1_label"  Content="0" HorizontalAlignment="Left" Margin="550,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="LR2_label"  Content="0" HorizontalAlignment="Left" Margin="580,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="LR3_label"  Content="0" HorizontalAlignment="Left" Margin="610,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="LR4_label"  Content="0" HorizontalAlignment="Left" Margin="640,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="LR5_label"  Content="0" HorizontalAlignment="Left" Margin="670,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
 
-        <Label x:Name="RL1_label"  Content="0" HorizontalAlignment="Left" Margin="550,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="RL2_label"  Content="0" HorizontalAlignment="Left" Margin="580,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="RL3_label"  Content="0" HorizontalAlignment="Left" Margin="610,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="RL4_label"  Content="0" HorizontalAlignment="Left" Margin="640,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="RL5_label"  Content="0" HorizontalAlignment="Left" Margin="670,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
 
-        <Label x:Name="H1_label"  Content="0" HorizontalAlignment="Left" Margin="550,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="H2_label"  Content="0" HorizontalAlignment="Left" Margin="580,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="H3_label"  Content="0" HorizontalAlignment="Left" Margin="610,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="H4_label"  Content="0" HorizontalAlignment="Left" Margin="640,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
-        <Label x:Name="H5_label"  Content="0" HorizontalAlignment="Left" Margin="670,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label Content="Diagnoal Left Going Down Right" HorizontalAlignment="Left" Margin="550,64,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Label Content="Diagnoal Right Going Down Left" HorizontalAlignment="Left" Margin="550,129,0,0" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" HorizontalContentAlignment="Center" FontWeight="Bold" />
+        <Label Content="Horizontal" HorizontalAlignment="Left" Margin="550,196,0,0" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+
+        <Label x:Name="LR1_label"  Content="0" HorizontalAlignment="Left" Margin="550,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center" />
+        <Label x:Name="LR2_label"  Content="0" HorizontalAlignment="Left" Margin="590,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center" />
+        <Label x:Name="LR3_label"  Content="0" HorizontalAlignment="Left" Margin="630,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LR4_label"  Content="0" HorizontalAlignment="Left" Margin="670,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LR5_label"  Content="0" HorizontalAlignment="Left" Margin="710,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+
+        <Label x:Name="RL1_label"  Content="0" HorizontalAlignment="Left" Margin="550,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL2_label"  Content="0" HorizontalAlignment="Left" Margin="590,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL3_label"  Content="0" HorizontalAlignment="Left" Margin="630,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL4_label"  Content="0" HorizontalAlignment="Left" Margin="670,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL5_label"  Content="0" HorizontalAlignment="Left" Margin="710,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+
+        <Label x:Name="H1_label"  Content="0" HorizontalAlignment="Left" Margin="550,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H2_label"  Content="0" HorizontalAlignment="Left" Margin="590,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H3_label"  Content="0" HorizontalAlignment="Left" Margin="630,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H4_label"  Content="0" HorizontalAlignment="Left" Margin="670,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H5_label"  Content="0" HorizontalAlignment="Left" Margin="710,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
 
     </Grid>
 </Window>
