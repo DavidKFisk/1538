@@ -10,67 +10,77 @@
 
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="LightGray"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border CornerRadius="20" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property ="IsPressed" Value ="True">
-                            <Setter  Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.0" ScaleY="0.9"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="Black" />
-                    <Setter Property="Foreground" Value="Yellow" />
-                </MultiTrigger.Setters>
-            </MultiTrigger>
-        </Style.Triggers>
-    </Style>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="20" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property ="IsPressed" Value ="True">
+                                <Setter  Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.0" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Background" Value="Black" />
+                        <Setter Property="Foreground" Value="Yellow" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid x:Name="GridForTiles">
 
-        <Border CornerRadius="20"></Border>
+        <Border CornerRadius="20">
 
-        <Button x:Name="SolveButton" Content="Solve Game" HorizontalAlignment="Left" Margin="550,375,0,0" VerticalAlignment="Top"  Height="50" Width="100" Command="{Binding SolveGame}" />
-        <Button x:Name="ResetButton" Content="Reset Game" HorizontalAlignment="Left" Margin="670,375,0,0" VerticalAlignment="Top"  Height="50" Width="100" Command="{Binding ResetGame}" />
+        </Border>
+
+        <Button x:Name="SolveButton" Content="Solve Game" HorizontalAlignment="Left" Margin="550,323,0,0" VerticalAlignment="Top"  Height="50" Width="95" Command="{Binding SolveGame}" />
+        <Button x:Name="ResetButton" Content="Reset Game" HorizontalAlignment="Left" Margin="655,323,0,0" VerticalAlignment="Top"  Height="50" Width="95" Command="{Binding ResetGame}" />
 
 
-        <Label Content="Diagnoal Left Going Down Right" HorizontalAlignment="Left" Margin="550,64,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-        <Label Content="Diagnoal Right Going Down Left" HorizontalAlignment="Left" Margin="550,129,0,0" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" HorizontalContentAlignment="Center" FontWeight="Bold" />
-        <Label Content="Horizontal" HorizontalAlignment="Left" Margin="550,196,0,0" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Label Content="Diagnoal Left Going Down Right" HorizontalAlignment="Left" Margin="550,40,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Label Content="Diagnoal Right Going Down Left" HorizontalAlignment="Left" Margin="550,134,0,0" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" />
+        <Label Content="Horizontal" HorizontalAlignment="Left" Margin="550,226,0,0" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
 
-        <Label x:Name="LR1_label"  Content="0" HorizontalAlignment="Left" Margin="550,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center" />
-        <Label x:Name="LR2_label"  Content="0" HorizontalAlignment="Left" Margin="590,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center" />
-        <Label x:Name="LR3_label"  Content="0" HorizontalAlignment="Left" Margin="630,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="LR4_label"  Content="0" HorizontalAlignment="Left" Margin="670,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="LR5_label"  Content="0" HorizontalAlignment="Left" Margin="710,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LR1_label"  Content="0" HorizontalAlignment="Left" Margin="550,69,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center" />
+        <Label x:Name="LR2_label"  Content="0" HorizontalAlignment="Left" Margin="590,69,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center" />
+        <Label x:Name="LR3_label"  Content="0" HorizontalAlignment="Left" Margin="630,69,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LR4_label"  Content="0" HorizontalAlignment="Left" Margin="670,69,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LR5_label"  Content="0" HorizontalAlignment="Left" Margin="710,69,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"  BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
 
-        <Label x:Name="RL1_label"  Content="0" HorizontalAlignment="Left" Margin="550,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="RL2_label"  Content="0" HorizontalAlignment="Left" Margin="590,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="RL3_label"  Content="0" HorizontalAlignment="Left" Margin="630,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="RL4_label"  Content="0" HorizontalAlignment="Left" Margin="670,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="RL5_label"  Content="0" HorizontalAlignment="Left" Margin="710,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL1_label"  Content="0" HorizontalAlignment="Left" Margin="550,163,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL2_label"  Content="0" HorizontalAlignment="Left" Margin="590,163,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL3_label"  Content="0" HorizontalAlignment="Left" Margin="630,163,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL4_label"  Content="0" HorizontalAlignment="Left" Margin="670,163,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="RL5_label"  Content="0" HorizontalAlignment="Left" Margin="710,163,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
 
-        <Label x:Name="H1_label"  Content="0" HorizontalAlignment="Left" Margin="550,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="H2_label"  Content="0" HorizontalAlignment="Left" Margin="590,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="H3_label"  Content="0" HorizontalAlignment="Left" Margin="630,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="H4_label"  Content="0" HorizontalAlignment="Left" Margin="670,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
-        <Label x:Name="H5_label"  Content="0" HorizontalAlignment="Left" Margin="710,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H1_label"  Content="0" HorizontalAlignment="Left" Margin="550,256,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H2_label"  Content="0" HorizontalAlignment="Left" Margin="590,256,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H3_label"  Content="0" HorizontalAlignment="Left" Margin="630,256,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H4_label"  Content="0" HorizontalAlignment="Left" Margin="670,256,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+        <Label x:Name="H5_label"  Content="0" HorizontalAlignment="Left" Margin="710,256,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16" BorderBrush="Black" BorderThickness="2" Background="PaleVioletRed" Width="40" HorizontalContentAlignment="Center"/>
+
+
+        <RadioButton x:Name="Solution1" Content="Solution #1" Margin="160,404,536,30" Width="100" IsChecked="True"/>
+        <RadioButton x:Name="Solution2" Content="Solution #2" Margin="250,404,436,29"  Width="100"/>
+
+        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="550,383,0,0" VerticalAlignment="Top"  Height="50" Width="200" Command="{Binding CloseGame}" />
+
+
 
     </Grid>
 </Window>

@@ -6,7 +6,12 @@
     <RootNamespace>_15ways38</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>1538.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="1538.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="38puzzle">

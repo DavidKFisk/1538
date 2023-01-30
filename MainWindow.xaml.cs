@@ -1,13 +1,10 @@
-﻿using _15ways38;
-using _38puzzle;
+﻿using _38puzzle;
 using System;
-using System.Reflection;
+using System.Security.Cryptography.Xml;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace _15ways38
 {
@@ -25,8 +22,6 @@ namespace _15ways38
         int[] _tileXLocationGrid = new int[] {-400,	-300,-200,-450,-350	,-250,-150,	-500,-400,-300,-200	,-100,-450,	-350,-250,-150,-400	,-300,-200 };
         int[] _tileYLocationGrid = new int[] { -50,-50,-50,25,25,25,25,100,100,100,100,100,175,175,175,175,250,250, 250};
 
-
-
         int[] _tileXLocationStart = new int[] { -700, -600, -500, -400, -300, -200, -100,    0,  100, -700, -600, -500, -400, -300, -200, -100,    0,  100, -300 };
         int[] _tileYLocationStart = new int[] { -400, -400, -400, -400, -400, -400, -400, -400, -400, -300, -300, -300, -300, -300, -300, -300, -300, -300, -200 };
 
@@ -39,6 +34,9 @@ namespace _15ways38
 
             MainViewModel vm = new MainViewModel(TileGrid, this, _tileXLocationGrid, _tileYLocationGrid, _tileXLocationStart, _tileYLocationStart);
             DataContext = vm;
+
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
         }
 
         private void SetupTiles()
@@ -140,14 +138,16 @@ namespace _15ways38
         public ICommand ResetGame { get; set; }
         public ICommand SolveGame { get; set; }
         public ICommand TileCheckPosition { get; set; }
-        public ICommand MouseUpCommand { get;  set; }
+        public ICommand MouseUpCommand { get; set; }
+        public ICommand CloseGame { get; set; }
+
 
         const int _numOfTiles = 19;
 
         MainWindow _mainWindow;
 
         Tile[] TileGrid = new Tile[15];
-       
+
         int[] _tileXLocationSolved;
         int[] _tileYLocationSolved;
 
@@ -161,6 +161,8 @@ namespace _15ways38
         {
             ResetGame = new RelayCommand(ExecuteResetGame);
             SolveGame = new RelayCommand(ExecuteSolveGame);
+            CloseGame = new RelayCommand(CloseWindow);
+
             TileCheckPosition = new RelayCommand((param) => TileMouseDown(param));
             MouseUpCommand = new RelayCommand((param) => TileMouseUP(param));
 
@@ -180,7 +182,6 @@ namespace _15ways38
 
         private void ExecuteTileMoving()
         {
-       
             int Position = 700;
 
             for (int i = 18; i >= 0; i--)
@@ -194,24 +195,58 @@ namespace _15ways38
 
         private void ExecuteResetGame()
         {
-    
             for (int i = 18; i >= 0; i--)
             {
                 TileGrid[i].TileColor = Brushes.Red;
                 TileGrid[i].Margin = new Thickness(_tileXLocationStart[i], _tileYLocationStart[i], 0, 0);
+                _TileBaseUsed[i] = false;
+                _TileBaseUsedValues[i] = 0;
+                SumRows();
             }
+        }
+
+        private void CloseWindow()
+        {
+           _mainWindow.Close();
         }
 
         private void ExecuteSolveGame()
         {
+            /*~~ Sum Positions ~~~~~~~~~~~~~~~~~~~~~~~~~Solutions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+                 	0   1    2       ||       15  14  9            15  13  10          3  17  18            9  11  18
+                 3   4    5    6     ||     13   8   6  11        14  8  4  12       19  7  1  11        14   6   1  17
+               7   8   9   10   11   ||   10   4   5   1   18    9  6  5  2  16    16  2   5  6  9     15  8   5   7  3
+                 12  13  14  15      ||      12  2   7   17       11  1  7  19       12  4   8   14      13  4   2  19
+                   16  17   18       ||        16 19  3             18  17  3          10 13  15          10  12  16
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+            int[] _tileXSolved = new int[19];
+            int[] _tileYSolved = new int[19];
+                 int[] _tileLocation = new int[19];
+
+            if (Convert.ToBoolean(_mainWindow.Solution1.IsChecked)) {
+                _tileXSolved = new int[] { -400, -300, -200, -450, -350, -250, -150, -500, -400, -300, -200, -100, -450, -350, -250, -150, -400, -300, -200 };
+                _tileYSolved = new int[] { -50, -50, -50, 25, 25, 25, 25, 100, 100, 100, 100, 100, 175, 175, 175, 175, 250, 250, 250 };
+                _tileLocation = new int[] { 8, 10, 17, 13, 5, 0, 16, 14, 7, 4, 6, 2, 12, 3, 1, 18, 9, 11, 15 };
+            }
+            else
+            {
+                _tileXSolved = new int[] { -400, -300, -200, -450, -350, -250, -150, -500, -400, -300, -200, -100, -450, -350, -250, -150, -400, -300, -200 };
+                _tileYSolved = new int[] { -50, -50, -50, 25, 25, 25, 25, 100, 100, 100, 100, 100, 175, 175, 175, 175, 250, 250, 250 };
+                _tileLocation = new int[] { 14, 12, 9, 13, 7, 3, 11, 8, 5, 4, 1, 15, 10, 0, 6, 18, 17, 16, 2 };
+            }
+
             Brush brush = Brushes.LightGreen;
-          
+
             for (int i = 0; i < _numOfTiles; i++)
             {
-                TileGrid[i].TileColor = brush;
-                TileGrid[i].Margin = new Thickness(_tileXLocationSolved[i], _tileYLocationSolved[i], 0, 0);
-                Grid.SetZIndex(TileGrid[i], 1);
+                TileGrid[_tileLocation[i]].TileColor = brush;
+                TileGrid[_tileLocation[i]].Margin = new Thickness(_tileXSolved[i], _tileYSolved[i], 0, 0);
+                _TileBaseUsed[i] = true;
+                _TileBaseUsedValues[i] = Convert.ToInt32(_tileLocation[i] + 1);
+                Grid.SetZIndex(TileGrid[_tileLocation[i]], 1);
             }
+
+            SumRows();
         }
 
         private void TileMouseUP(Object param)
@@ -224,8 +259,8 @@ namespace _15ways38
 
                 for (int i = 0; i < TileGrid.Length; i++)
                 {
-                    if ((tile.CurrentUPX >= _tileXLocationSolved[i] -25 && tile.CurrentUPX <= (_tileXLocationSolved[i] + 50)) &&
-                        (tile.CurrentUPY >= _tileYLocationSolved[i] -25 && tile.CurrentUPY <= (_tileYLocationSolved[i] + 50)) && !_TileBaseUsed[i])
+                    if ((tile.CurrentUPX >= _tileXLocationSolved[i] - 25 && tile.CurrentUPX <= (_tileXLocationSolved[i] + 50)) &&
+                        (tile.CurrentUPY >= _tileYLocationSolved[i] - 25 && tile.CurrentUPY <= (_tileYLocationSolved[i] + 50)) && !_TileBaseUsed[i])
                     {
                         if (!_TileBaseUsed[i])
                         {
@@ -253,11 +288,11 @@ namespace _15ways38
         private void SumRows()
         {
             /*~~ Sum Positions ~~~~~~~~~~~~~~~~~~~~~~~~~Solutions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-                 	0   1    2       ||       15  14  9             5  13  10          3  17  18           9  11  18
-                 3   4    5    6     ||     13   8   6  11        14  8  4  12       19  7  1  11        14  6   1  17
-               7   8   9   10   11   ||   10   4   5   1   18    9  6  5  2  16    16  2   5  6  9     15  8  5   7  3
-                 12  13  14  15      ||      12  2   7   17       11  1  7  19       12  4   8   14      13  4  2  19
-                   16  17   18       ||        16 19  3             18  17  3          10 13  15           10  12  16
+                 	0   1    2       ||       15  14  9             5  13  10          3  17  18            9  11  18
+                 3   4    5    6     ||     13   8   6  11        14  8  4  12       19  7  1  11        14   6   1  17
+               7   8   9   10   11   ||   10   4   5   1   18    9  6  5  2  16    16  2   5  6  9     15  8   5   7  3
+                 12  13  14  15      ||      12  2   7   17       11  1  7  19       12  4   8   14      13  4   2  19
+                   16  17   18       ||        16 19  3             18  17  3          10 13  15          10  12  16
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
@@ -280,26 +315,23 @@ namespace _15ways38
             _mainWindow.H5_label.Content = (_TileBaseUsedValues[16] + _TileBaseUsedValues[17] + _TileBaseUsedValues[18]).ToString();
 
 
-            if (_mainWindow.LR1_label.Content.ToString() == "38") { _mainWindow.LR1_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR1_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.LR2_label.Content.ToString() == "38") { _mainWindow.LR2_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR2_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.LR3_label.Content.ToString() == "38") { _mainWindow.LR3_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR3_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.LR4_label.Content.ToString() == "38") { _mainWindow.LR4_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR4_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.LR5_label.Content.ToString() == "38") { _mainWindow.LR5_label.Foreground = Brushes.LightGreen; } else { _mainWindow.LR5_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR1_label.Content.ToString() == "38") { _mainWindow.LR1_label.Background = Brushes.LightGreen; } else { _mainWindow.LR1_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR2_label.Content.ToString() == "38") { _mainWindow.LR2_label.Background = Brushes.LightGreen; } else { _mainWindow.LR2_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR3_label.Content.ToString() == "38") { _mainWindow.LR3_label.Background = Brushes.LightGreen; } else { _mainWindow.LR3_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR4_label.Content.ToString() == "38") { _mainWindow.LR4_label.Background = Brushes.LightGreen; } else { _mainWindow.LR4_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.LR5_label.Content.ToString() == "38") { _mainWindow.LR5_label.Background = Brushes.LightGreen; } else { _mainWindow.LR5_label.Background = Brushes.PaleVioletRed; }
 
-            if (_mainWindow.RL1_label.Content.ToString() == "38") { _mainWindow.RL1_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL1_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.RL2_label.Content.ToString() == "38") { _mainWindow.RL2_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL2_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.RL3_label.Content.ToString() == "38") { _mainWindow.RL3_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL3_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.RL4_label.Content.ToString() == "38") { _mainWindow.RL4_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL4_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.RL5_label.Content.ToString() == "38") { _mainWindow.RL5_label.Foreground = Brushes.LightGreen; } else { _mainWindow.RL5_label.Foreground = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL1_label.Content.ToString() == "38") { _mainWindow.RL1_label.Background = Brushes.LightGreen; } else { _mainWindow.RL1_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL2_label.Content.ToString() == "38") { _mainWindow.RL2_label.Background = Brushes.LightGreen; } else { _mainWindow.RL2_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL3_label.Content.ToString() == "38") { _mainWindow.RL3_label.Background = Brushes.LightGreen; } else { _mainWindow.RL3_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL4_label.Content.ToString() == "38") { _mainWindow.RL4_label.Background = Brushes.LightGreen; } else { _mainWindow.RL4_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.RL5_label.Content.ToString() == "38") { _mainWindow.RL5_label.Background = Brushes.LightGreen; } else { _mainWindow.RL5_label.Background = Brushes.PaleVioletRed; }
 
-            if (_mainWindow.H1_label.Content.ToString() == "38") { _mainWindow.H1_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H1_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.H2_label.Content.ToString() == "38") { _mainWindow.H2_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H2_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.H3_label.Content.ToString() == "38") { _mainWindow.H3_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H3_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.H4_label.Content.ToString() == "38") { _mainWindow.H4_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H4_label.Foreground = Brushes.PaleVioletRed; }
-            if (_mainWindow.H5_label.Content.ToString() == "38") { _mainWindow.H5_label.Foreground = Brushes.LightGreen; } else { _mainWindow.H5_label.Foreground = Brushes.PaleVioletRed; }
-
-
-
+            if (_mainWindow.H1_label.Content.ToString() == "38") { _mainWindow.H1_label.Background = Brushes.LightGreen; } else { _mainWindow.H1_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.H2_label.Content.ToString() == "38") { _mainWindow.H2_label.Background = Brushes.LightGreen; } else { _mainWindow.H2_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.H3_label.Content.ToString() == "38") { _mainWindow.H3_label.Background = Brushes.LightGreen; } else { _mainWindow.H3_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.H4_label.Content.ToString() == "38") { _mainWindow.H4_label.Background = Brushes.LightGreen; } else { _mainWindow.H4_label.Background = Brushes.PaleVioletRed; }
+            if (_mainWindow.H5_label.Content.ToString() == "38") { _mainWindow.H5_label.Background = Brushes.LightGreen; } else { _mainWindow.H5_label.Background = Brushes.PaleVioletRed; }
 
         }
 
@@ -310,8 +342,23 @@ namespace _15ways38
             {
                 Panel.SetZIndex(tile, 2);
                 tile.TileColor = Brushes.DeepPink;
+
+                for (int i = 0; i < TileGrid.Length; i++)
+                {
+                    if ((tile.CurrentUPX >= _tileXLocationSolved[i] - 25 && tile.CurrentUPX <= (_tileXLocationSolved[i] + 50)) &&
+                       (tile.CurrentUPY >= _tileYLocationSolved[i] - 25 && tile.CurrentUPY <= (_tileYLocationSolved[i] + 50)) && _TileBaseUsed[i])
+                    {
+                        if (_TileBaseUsed[i])
+                        {
+                            _TileBaseUsed[i] = false;
+                            _TileBaseUsedValues[i] = 0;
+                            SumRows();
+                        }
+                    }
+                    else
+                    { }
+                }
             }
         }
     }
-
 }
