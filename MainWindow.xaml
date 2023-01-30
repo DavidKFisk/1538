@@ -53,23 +53,23 @@
         <Label Content="Diagnoal Right Going Down Left" HorizontalAlignment="Left" Margin="550,129,0,0" VerticalAlignment="Top"/>
         <Label Content="Horizontal" HorizontalAlignment="Left" Margin="550,196,0,0" VerticalAlignment="Top"/>
         
-        <Label x:Name="LR1_label"  Content="0" HorizontalAlignment="Left" Margin="550,85,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LR2_label"  Content="0" HorizontalAlignment="Left" Margin="580,85,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LR3_label"  Content="0" HorizontalAlignment="Left" Margin="610,85,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LR4_label"  Content="0" HorizontalAlignment="Left" Margin="640,85,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LR5_label"  Content="0" HorizontalAlignment="Left" Margin="670,85,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LR1_label"  Content="0" HorizontalAlignment="Left" Margin="550,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="LR2_label"  Content="0" HorizontalAlignment="Left" Margin="580,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="LR3_label"  Content="0" HorizontalAlignment="Left" Margin="610,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="LR4_label"  Content="0" HorizontalAlignment="Left" Margin="640,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="LR5_label"  Content="0" HorizontalAlignment="Left" Margin="670,85,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
 
-        <Label x:Name="RL1_label"  Content="0" HorizontalAlignment="Left" Margin="550,150,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="RL2_label"  Content="0" HorizontalAlignment="Left" Margin="580,150,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="RL3_label"  Content="0" HorizontalAlignment="Left" Margin="610,150,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="RL4_label"  Content="0" HorizontalAlignment="Left" Margin="640,150,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="RL5_label"  Content="0" HorizontalAlignment="Left" Margin="670,150,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="RL1_label"  Content="0" HorizontalAlignment="Left" Margin="550,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="RL2_label"  Content="0" HorizontalAlignment="Left" Margin="580,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="RL3_label"  Content="0" HorizontalAlignment="Left" Margin="610,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="RL4_label"  Content="0" HorizontalAlignment="Left" Margin="640,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="RL5_label"  Content="0" HorizontalAlignment="Left" Margin="670,150,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
 
-        <Label x:Name="H1_label"  Content="0" HorizontalAlignment="Left" Margin="550,215,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="H2_label"  Content="0" HorizontalAlignment="Left" Margin="580,215,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="H3_label"  Content="0" HorizontalAlignment="Left" Margin="610,215,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="H4_label"  Content="0" HorizontalAlignment="Left" Margin="640,215,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="H5_label"  Content="0" HorizontalAlignment="Left" Margin="670,215,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="H1_label"  Content="0" HorizontalAlignment="Left" Margin="550,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="H2_label"  Content="0" HorizontalAlignment="Left" Margin="580,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="H3_label"  Content="0" HorizontalAlignment="Left" Margin="610,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="H4_label"  Content="0" HorizontalAlignment="Left" Margin="640,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
+        <Label x:Name="H5_label"  Content="0" HorizontalAlignment="Left" Margin="670,215,0,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="16"/>
 
     </Grid>
 </Window>

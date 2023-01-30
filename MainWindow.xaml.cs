@@ -1,4 +1,5 @@
-﻿using _38puzzle;
+﻿using _15ways38;
+using _38puzzle;
 using System;
 using System.Reflection;
 using System.Windows;
@@ -20,10 +21,13 @@ namespace _15ways38
         Tile[] TileGrid = new Tile[19];
         TileBase[] _tileBase = new TileBase[_numOfTiles];
 
-        int[] _tileXLocationSolved = new int[] { -250, -250, -100, -350, -300, -350, -200, -400, -400, -400, -300, -300, -450, -450, -500, -200, -150, -200, -150 };
-        int[] _tileYLocationSolved = new int[] {   25,  175,  100,  175,  100,   25,  100,  100,  -50,  250,  -50,  250,  175,   25,  100,  250,   25,  -50,  175 };
+ 
+        int[] _tileXLocationGrid = new int[] {-400,	-300,-200,-450,-350	,-250,-150,	-500,-400,-300,-200	,-100,-450,	-350,-250,-150,-400	,-300,-200 };
+        int[] _tileYLocationGrid = new int[] { -50,-50,-50,25,25,25,25,100,100,100,100,100,175,175,175,175,250,250, 250};
 
-        int[] _tileXLocationStart = new int[] { -700, -600, -500, -400, -300, -200, -100,   -0,  100, -700, -600, -500, -400, -300, -200, -100,    0,  100, -300 };
+
+
+        int[] _tileXLocationStart = new int[] { -700, -600, -500, -400, -300, -200, -100,    0,  100, -700, -600, -500, -400, -300, -200, -100,    0,  100, -300 };
         int[] _tileYLocationStart = new int[] { -400, -400, -400, -400, -400, -400, -400, -400, -400, -300, -300, -300, -300, -300, -300, -300, -300, -300, -200 };
 
         public MainWindow()
@@ -33,7 +37,7 @@ namespace _15ways38
             SetupBaseTiles();
             SetupTiles();
 
-            MainViewModel vm = new MainViewModel(TileGrid, this, _tileXLocationSolved, _tileYLocationSolved, _tileXLocationStart, _tileYLocationStart);
+            MainViewModel vm = new MainViewModel(TileGrid, this, _tileXLocationGrid, _tileYLocationGrid, _tileXLocationStart, _tileYLocationStart);
             DataContext = vm;
         }
 
@@ -64,7 +68,7 @@ namespace _15ways38
             for (int i = 0; i < _tileBase.Length; i++)
             {
                 _tileBase[i] = new TileBase();
-                _tileBase[i].Margin = new Thickness(_tileXLocationSolved[i], _tileYLocationSolved[i], 0, 0);
+                _tileBase[i].Margin = new Thickness(_tileXLocationGrid[i], _tileYLocationGrid[i], 0, 0);
                 _tileBase[i].Width = 50;
                 _tileBase[i].Height = 50;
                 WinGrid.Children.Add(_tileBase[i]);
@@ -151,8 +155,7 @@ namespace _15ways38
         int[] _tileYLocationStart;
 
         bool[] _TileBaseUsed = new bool[_numOfTiles];
-        
-
+        int[] _TileBaseUsedValues = new int[_numOfTiles];
 
         public MainViewModel(Tile[] tileGrid, MainWindow window, int[] _tileXLocSolved, int[] _tileYLocSolved, int[] _tileXLocStart, int[] _tileYLocStart)
         {
@@ -172,6 +175,7 @@ namespace _15ways38
 
             //Mark positions that have been used true
             for (int i = 0; i < _numOfTiles; i++) { _TileBaseUsed[i] = false; }
+            for (int i = 0; i < _numOfTiles; i++) { _TileBaseUsedValues[i] = 0; }
         }
 
         private void ExecuteTileMoving()
@@ -223,10 +227,17 @@ namespace _15ways38
                     if ((tile.CurrentUPX >= _tileXLocationSolved[i] -25 && tile.CurrentUPX <= (_tileXLocationSolved[i] + 50)) &&
                         (tile.CurrentUPY >= _tileYLocationSolved[i] -25 && tile.CurrentUPY <= (_tileYLocationSolved[i] + 50)) && !_TileBaseUsed[i])
                     {
-                        tile.Margin = new Thickness(_tileXLocationSolved[i], _tileYLocationSolved[i], 0, 0);
-                        _foundLocationToDrop = true;
-                        Grid.SetZIndex(tile, 1);
-                        SumRows(tile.TileNum);
+                        if (!_TileBaseUsed[i])
+                        {
+                            tile.Margin = new Thickness(_tileXLocationSolved[i], _tileYLocationSolved[i], 0, 0);
+                            _foundLocationToDrop = true;
+                            Grid.SetZIndex(tile, 1);
+
+                            _TileBaseUsed[i] = true;
+                            _TileBaseUsedValues[i] = Convert.ToInt32(tile.TileNum);
+
+                            SumRows();
+                        }
                         break;
                     }
                 }
@@ -239,9 +250,53 @@ namespace _15ways38
             }
         }
 
-        private void SumRows(string tileNum)
+        private void SumRows()
         {
-            _mainWindow.LR1_label.Content= tileNum;
+            /*~~ Sum Positions ~~~~~~~~~~~~~~~~~~~~~~~~~Solutions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+                 	0   1    2       ||       15  14  9             5  13  10          3  17  18           9  11  18
+                 3   4    5    6     ||     13   8   6  11        14  8  4  12       19  7  1  11        14  6   1  17
+               7   8   9   10   11   ||   10   4   5   1   18    9  6  5  2  16    16  2   5  6  9     15  8  5   7  3
+                 12  13  14  15      ||      12  2   7   17       11  1  7  19       12  4   8   14      13  4  2  19
+                   16  17   18       ||        16 19  3             18  17  3          10 13  15           10  12  16
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+            _mainWindow.LR1_label.Content = (_TileBaseUsedValues[7] + _TileBaseUsedValues[12] + _TileBaseUsedValues[16]).ToString();
+            _mainWindow.LR2_label.Content = (_TileBaseUsedValues[3] + _TileBaseUsedValues[8] + _TileBaseUsedValues[13] + _TileBaseUsedValues[17]).ToString();
+            _mainWindow.LR3_label.Content = (_TileBaseUsedValues[0] + _TileBaseUsedValues[4] + _TileBaseUsedValues[9] + _TileBaseUsedValues[14] + _TileBaseUsedValues[18]).ToString();
+            _mainWindow.LR4_label.Content = (_TileBaseUsedValues[1] + _TileBaseUsedValues[5] + _TileBaseUsedValues[10] + _TileBaseUsedValues[15]).ToString();
+            _mainWindow.LR5_label.Content = (_TileBaseUsedValues[2] + _TileBaseUsedValues[6] + _TileBaseUsedValues[11]).ToString();
+
+            _mainWindow.RL1_label.Content = (_TileBaseUsedValues[11] + _TileBaseUsedValues[15] + _TileBaseUsedValues[18]).ToString();
+            _mainWindow.RL2_label.Content = (_TileBaseUsedValues[6] + _TileBaseUsedValues[10] + _TileBaseUsedValues[14] + _TileBaseUsedValues[17]).ToString();
+            _mainWindow.RL3_label.Content = (_TileBaseUsedValues[2] + _TileBaseUsedValues[5] + _TileBaseUsedValues[9] + _TileBaseUsedValues[13] + _TileBaseUsedValues[16]).ToString();
+            _mainWindow.RL4_label.Content = (_TileBaseUsedValues[1] + _TileBaseUsedValues[4] + _TileBaseUsedValues[8] + _TileBaseUsedValues[12]).ToString();
+            _mainWindow.RL5_label.Content = (_TileBaseUsedValues[0] + _TileBaseUsedValues[3] + _TileBaseUsedValues[7]).ToString();
+
+            _mainWindow.H1_label.Content = (_TileBaseUsedValues[0] + _TileBaseUsedValues[1] + _TileBaseUsedValues[2]).ToString();
+            _mainWindow.H2_label.Content = (_TileBaseUsedValues[3] + _TileBaseUsedValues[4] + _TileBaseUsedValues[5] + _TileBaseUsedValues[6]).ToString();
+            _mainWindow.H3_label.Content = (_TileBaseUsedValues[7] + _TileBaseUsedValues[8] + _TileBaseUsedValues[9] + _TileBaseUsedValues[10] + _TileBaseUsedValues[11]).ToString();
+            _mainWindow.H4_label.Content = (_TileBaseUsedValues[12] + _TileBaseUsedValues[13] + _TileBaseUsedValues[14] + _TileBaseUsedValues[15]).ToString();
+            _mainWindow.H5_label.Content = (_TileBaseUsedValues[16] + _TileBaseUsedValues[17] + _TileBaseUsedValues[18]).ToString();
+
+
+            if(_mainWindow.LR1_label.Content.ToString() ==  "38"){_mainWindow.LR1_label.Foreground = Brushes.Green; } else { _mainWindow.LR1_label.Foreground = Brushes.Red; }
+            if(_mainWindow.LR2_label.Content.ToString() ==  "38"){_mainWindow.LR2_label.Foreground = Brushes.Green; } else { _mainWindow.LR2_label.Foreground = Brushes.Red; }
+            if(_mainWindow.LR3_label.Content.ToString() ==  "38"){_mainWindow.LR3_label.Foreground = Brushes.Green; } else { _mainWindow.LR3_label.Foreground = Brushes.Red; }
+            if(_mainWindow.LR4_label.Content.ToString() ==  "38"){_mainWindow.LR4_label.Foreground = Brushes.Green; } else { _mainWindow.LR4_label.Foreground = Brushes.Red; }
+            if(_mainWindow.LR5_label.Content.ToString() ==  "38"){_mainWindow.LR5_label.Foreground = Brushes.Green; } else { _mainWindow.LR5_label.Foreground = Brushes.Red; }
+                                                               
+            if(_mainWindow.RL1_label.Content.ToString() ==  "38"){_mainWindow.RL1_label.Foreground = Brushes.Green; } else { _mainWindow.RL1_label.Foreground = Brushes.Red; }
+            if(_mainWindow.RL2_label.Content.ToString() ==  "38"){_mainWindow.RL2_label.Foreground = Brushes.Green; } else { _mainWindow.RL2_label.Foreground = Brushes.Red; }
+            if(_mainWindow.RL3_label.Content.ToString() ==  "38"){_mainWindow.RL3_label.Foreground = Brushes.Green; } else { _mainWindow.RL3_label.Foreground = Brushes.Red; }
+            if(_mainWindow.RL4_label.Content.ToString() ==  "38"){_mainWindow.RL4_label.Foreground = Brushes.Green; } else { _mainWindow.RL4_label.Foreground = Brushes.Red; }
+            if(_mainWindow.RL5_label.Content.ToString() ==  "38"){_mainWindow.RL5_label.Foreground = Brushes.Green; } else { _mainWindow.RL5_label.Foreground = Brushes.Red; }
+                                                                            
+            if(_mainWindow.H1_label.Content.ToString() ==   "38"){_mainWindow.H1_label.Foreground = Brushes.Green; } else { _mainWindow.H1_label.Foreground = Brushes.Red; }
+            if(_mainWindow.H2_label.Content.ToString() ==   "38"){_mainWindow.H2_label.Foreground = Brushes.Green; } else { _mainWindow.H2_label.Foreground = Brushes.Red; }
+            if(_mainWindow.H3_label.Content.ToString() ==   "38"){_mainWindow.H3_label.Foreground = Brushes.Green; } else { _mainWindow.H3_label.Foreground = Brushes.Red; }
+            if(_mainWindow.H4_label.Content.ToString() ==   "38"){_mainWindow.H4_label.Foreground = Brushes.Green; } else { _mainWindow.H4_label.Foreground = Brushes.Red; }
+            if(_mainWindow.H5_label.Content.ToString() ==   "38"){_mainWindow.H5_label.Foreground = Brushes.Green; } else { _mainWindow.H5_label.Foreground = Brushes.Red; }
+                                                 
         }
 
         private void TileMouseDown(Object param)
