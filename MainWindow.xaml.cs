@@ -46,7 +46,7 @@ namespace _15ways38
             for (int i = 18; i >= 0; i--)
             {
                 TileGrid[i] = new Tile();
-                TileGrid[i].TileColor = Brushes.Red;
+                TileGrid[i].TileColor = Brushes.IndianRed;
                 TileGrid[i].TileNum = (i + 1).ToString();
                 TileGrid[i].Margin = new Thickness(_tileXLocationStart[i], _tileYLocationStart[i], 0, 0);
                 TileGrid[i].Width = 50;
@@ -197,7 +197,7 @@ namespace _15ways38
         {
             for (int i = 18; i >= 0; i--)
             {
-                TileGrid[i].TileColor = Brushes.Red;
+                TileGrid[i].TileColor = Brushes.IndianRed;
                 TileGrid[i].Margin = new Thickness(_tileXLocationStart[i], _tileYLocationStart[i], 0, 0);
                 _TileBaseUsed[i] = false;
                 _TileBaseUsedValues[i] = 0;
@@ -291,7 +291,7 @@ namespace _15ways38
                  	0   1    2       ||       15  14  9             5  13  10          3  17  18            9  11  18
                  3   4    5    6     ||     13   8   6  11        14  8  4  12       19  7  1  11        14   6   1  17
                7   8   9   10   11   ||   10   4   5   1   18    9  6  5  2  16    16  2   5  6  9     15  8   5   7  3
-                 12  13  14  15      ||      12  2   7   17       11  1  7  19       12  4   8   14      13  4   2  19
+                 12  13  14  15      ||      12  2   7   17       11  1  7  19       12  4   8  14      13  4   2  19
                    16  17   18       ||        16 19  3             18  17  3          10 13  15          10  12  16
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -341,7 +341,7 @@ namespace _15ways38
             if (tile != null)
             {
                 Panel.SetZIndex(tile, 2);
-                tile.TileColor = Brushes.DeepPink;
+                tile.TileColor = Brushes.Yellow;
 
                 for (int i = 0; i < TileGrid.Length; i++)
                 {
